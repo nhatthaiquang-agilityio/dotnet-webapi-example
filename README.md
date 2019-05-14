@@ -1,5 +1,7 @@
 # dotnet-webapi-example
-
++ Using Docker
++ NET CORE SDK 2.2
++ ASPNET RUNTIME 2.2
 
 ### Usage
 
