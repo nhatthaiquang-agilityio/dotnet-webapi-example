@@ -3,8 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApiSample.DataAccess;
-using WebApiSample.DataAccess.Models;
+using WebApiSample.Models;
 
 namespace WebApiSample.Controllers
 {

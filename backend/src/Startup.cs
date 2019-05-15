@@ -16,6 +16,8 @@ using Microsoft.Extensions.Options;
 [assembly: ApiController]
 namespace WebApiSample
 {
+    using WebApiSample.Models;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -71,6 +73,14 @@ namespace WebApiSample
             //     });
             // #endregion
             // #endif
+
+            // config MongoDB
+            var config = new ServerConfig();
+            Configuration.Bind(config);
+
+            var todoContext = new TodoContext(config.MongoDB);
+            var repo = new TodoRepository(todoContext);
+            services.AddSingleton<ITodoRepository>(repo);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
