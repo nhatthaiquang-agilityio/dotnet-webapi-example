@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 namespace WebApiSample
 {
     using WebApiSample.Models;
+    using WebApiSample.Services;
 
     public class Startup
     {
@@ -80,7 +81,12 @@ namespace WebApiSample
 
             var todoContext = new TodoContext(config.MongoDB);
             var repo = new TodoRepository(todoContext);
+            // Singleton lifetime services are created the first time they're requested
             services.AddSingleton<ITodoRepository>(repo);
+
+            // book service
+            // Scoped lifetime services are created once per client request (connection).
+            services.AddScoped<BookService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
