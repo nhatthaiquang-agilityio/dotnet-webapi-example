@@ -31,11 +31,11 @@ namespace WebApiSample.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Book>> Get(string id)
         {
-            var Book = await _bookService.GetBook(id);
-            if (Book == null)
+            var book = await _bookService.GetBook(id);
+            if (book == null)
                 return new NotFoundResult();
 
-            return new ObjectResult(Book);
+            return new ObjectResult(book);
         }
 
         // POST api/Books
@@ -47,20 +47,19 @@ namespace WebApiSample.Controllers
         }
 
         // PUT api/Books/1
-        // [HttpPut("{id}")]
-        // public async Task<ActionResult<Book>> Put(long id, [FromBody] Book Book)
-        // {
-        //     var BookFromDb = await _bookService.GetBook(id);
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Book>> Put(string id, [FromBody] Book book)
+        {
+            var bookFromDb = await _bookService.GetBook(id);
 
-        //     if (BookFromDb == null)
-        //         return new NotFoundResult();
+            if (bookFromDb == null)
+                return new NotFoundResult();
 
-        //     Book.Id = BookFromDb.Id;
-        //     Book.InternalId = BookFromDb.InternalId;
-        //     await _bookService.Update(Book);
+            book.Id = bookFromDb.Id;
+            await _bookService.Update(book);
 
-        //     return new OkObjectResult(Book);
-        // }
+            return new OkObjectResult(book);
+        }
 
         // DELETE api/Books/1
         [HttpDelete("{id}")]

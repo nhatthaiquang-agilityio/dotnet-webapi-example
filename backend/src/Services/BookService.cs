@@ -40,5 +40,11 @@ namespace WebApiSample.Services
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
 
+        public async Task<bool> Update(Book bookIn)
+        {
+            ReplaceOneResult updateResult =
+                await _books.ReplaceOneAsync(filter: book => book.Id == bookIn.Id, bookIn);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
+        }
     }
 }
