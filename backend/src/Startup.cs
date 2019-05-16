@@ -31,58 +31,14 @@ namespace WebApiSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            // #if SuppressApiControllerBehavior
-            // #region snippet_ConfigureApiBehaviorOptions
-            // services.AddMvc()
-            //     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-            //     .ConfigureApiBehaviorOptions(options =>
-            //     {
-            //         options.SuppressConsumesConstraintForFormFileParameters = true;
-            //         options.SuppressInferBindingSourcesForParameters = true;
-            //         options.SuppressModelStateInvalidFilter = true;
-            //         options.SuppressMapClientErrors = true;
-            //         options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
-            //         options.ClientErrorMapping[404].Link =
-            //             "https://httpstatuses.com/404";
-            //     });
-            // #endregion
-            // #endif
-
-            // #if InvalidModelStateResponseFactory
-            // #region snippet_ConfigureBadRequestResponse
-            // services.AddMvc()
-            //     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-            //     .ConfigureApiBehaviorOptions(options =>
-            //     {
-            //         options.InvalidModelStateResponseFactory = context =>
-            //         {
-            //             var problemDetails = new ValidationProblemDetails(context.ModelState)
-            //             {
-            //                 Type = "https://contoso.com/probs/modelvalidation",
-            //                 Title = "One or more model validation errors occurred.",
-            //                 Status = StatusCodes.Status400BadRequest,
-            //                 Detail = "See the errors property for details.",
-            //                 Instance = context.HttpContext.Request.Path
-            //             };
-
-            //             return new BadRequestObjectResult(problemDetails)
-            //             {
-            //                 ContentTypes = { "application/problem+json" }
-            //             };
-            //         };
-            //     });
-            // #endregion
-            // #endif
-
             // config MongoDB
             var config = new ServerConfig();
             Configuration.Bind(config);
 
+            // // constructor injection
             var todoContext = new TodoContext(config.MongoDB);
-            var repo = new TodoRepository(todoContext);
             // Singleton lifetime services are created the first time they're requested
-            services.AddSingleton<ITodoRepository>(repo);
+            services.AddSingleton<ITodoRepository>(new TodoRepository(todoContext));
 
             // book service
             // Scoped lifetime services are created once per client request (connection).
