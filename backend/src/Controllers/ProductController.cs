@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiSample.Models;
@@ -46,7 +45,6 @@ namespace WebApiSample.Controllers
             return product;
         }
 
-        #region snippet_BindingSourceAttributes
         [HttpGet]
         public ActionResult<List<Product>> Get(
             [FromQuery] bool discontinuedOnly = false)
@@ -64,7 +62,6 @@ namespace WebApiSample.Controllers
 
             return products;
         }
-        #endregion
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]

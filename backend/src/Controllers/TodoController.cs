@@ -1,12 +1,10 @@
+using WebApiSample.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
 namespace WebApiSample.Controllers
 {
-    using WebApiSample.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-
     [Produces("application/json")]
     [Route("api/[Controller]")]
     public class TodosController: Controller
