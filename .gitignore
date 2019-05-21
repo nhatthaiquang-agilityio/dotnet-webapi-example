@@ -1,2 +1,8 @@
 # volumes mongo db
 devops/data/
+
+backend/src/bin
+backend/src/obj
+
+.vs
+.DS_Store
