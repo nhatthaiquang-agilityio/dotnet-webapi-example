@@ -1,11 +1,10 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MongoDB.Driver;
+using MongoDB.Bson;
+
 namespace WebApiSample.Models
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using MongoDB.Driver;
-    using MongoDB.Bson;
-    using System.Linq;
-
     public class TodoRepository : ITodoRepository
     {
         private readonly ITodoContext _context;

@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace WebApiSample.Models
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     public interface ITodoRepository
     {
         // api/[GET]
