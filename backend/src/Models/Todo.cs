@@ -1,7 +1,10 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+
 namespace WebApiSample.Models
 {
-    using MongoDB.Bson;
-    using MongoDB.Bson.Serialization.Attributes;
+
     public class Todo
     {
         [BsonId]

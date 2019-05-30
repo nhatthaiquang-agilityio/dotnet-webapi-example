@@ -27,7 +27,7 @@ namespace WebApiSample
             var config = new ServerConfig();
             Configuration.Bind(config);
 
-            // // constructor injection
+            // constructor injection
             var todoContext = new TodoContext(config.MongoDB);
             // Singleton lifetime services are created the first time they're requested
             services.AddSingleton<ITodoRepository>(new TodoRepository(todoContext));
@@ -48,7 +48,9 @@ namespace WebApiSample
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. 
+                // You may want to change this for production scenarios, 
+                // see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

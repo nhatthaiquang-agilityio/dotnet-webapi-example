@@ -1,7 +1,7 @@
+using MongoDB.Driver;
+
 namespace WebApiSample.Models
 {
-    using WebApiSample;
-    using MongoDB.Driver;
 
     public class TodoContext: ITodoContext
     {
