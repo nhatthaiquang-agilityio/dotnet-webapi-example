@@ -10,7 +10,7 @@ namespace WebApiSample.Controllers
 
     [Produces("application/json")]
     [Route("api/[Controller]")]
-    public class BooksController: Controller
+    public class BooksController: MyControllerBase
     {
         private readonly BookService _bookService;
 

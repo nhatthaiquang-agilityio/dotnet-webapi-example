@@ -7,7 +7,7 @@ namespace WebApiSample.Controllers
 {
     [Produces("application/json")]
     [Route("api/[Controller]")]
-    public class TodosController: Controller
+    public class TodosController: MyControllerBase
     {
         private readonly ITodoRepository _repo;
         public TodosController(ITodoRepository repo)
