@@ -4,8 +4,8 @@ ASP.NET Core API Server that uses MongoDB in the backend
 ### Requirement
 ----------------
 + Using Docker & Docker Compose
-+ NET CORE SDK 2.2
-+ ASPNET RUNTIME 2.2
++ NET CORE SDK 2.1
++ ASPNET RUNTIME 2.1
 + MongoDB
 
 

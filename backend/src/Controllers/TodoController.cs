@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApiSample.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[Controller]")]
+    [Route("api/[controller]")]
     public class TodosController: MyControllerBase
     {
         private readonly ITodoRepository _repo;

@@ -8,8 +8,7 @@ using WebApiSample.Services;
 namespace WebApiSample.Controllers
 {
 
-    [Produces("application/json")]
-    [Route("api/[Controller]")]
+    [Route("api/[controller]")]
     public class BooksController: MyControllerBase
     {
         private readonly BookService _bookService;
