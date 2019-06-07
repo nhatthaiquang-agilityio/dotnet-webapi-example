@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +13,11 @@ namespace WebApiSample.Services
 
         public BookService(IConfiguration config)
         {
-            var client = new MongoClient(config.GetConnectionString("BookstoreDb"));
+            var connectionString = (Environment.GetEnvironmentVariable("MONGO_HOST") != null) ?
+                config.GetConnectionString("BookstoreDb"): 
+                config.GetConnectionString("Local");
+
+            var client = new MongoClient(connectionString);
             var database = client.GetDatabase(config["MongoDB:Database"]);
             _books = database.GetCollection<Book>("Books");
         }
@@ -41,7 +46,7 @@ namespace WebApiSample.Services
         public async Task<bool> Update(Book bookIn)
         {
             ReplaceOneResult updateResult =
-                await _books.ReplaceOneAsync(filter: book => book.Id == bookIn.Id, bookIn);
+                await _books.ReplaceOneAsync(book => book.Id == bookIn.Id, bookIn);
             return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
         }
     }
