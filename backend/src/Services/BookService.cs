@@ -13,9 +13,9 @@ namespace WebApiSample.Services
 
         public BookService(IConfiguration config)
         {
-            var connectionString = (Environment.GetEnvironmentVariable("MONGO_HOST") != null) ?
-                config.GetConnectionString("BookstoreDb"): 
-                config.GetConnectionString("Local");
+            var connectionString = (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("MONGO_HOST"))) ?
+                config.GetConnectionString("Local") :
+                config.GetConnectionString("BookstoreDb");
 
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(config["MongoDB:Database"]);
